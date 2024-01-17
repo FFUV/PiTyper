@@ -24,7 +24,8 @@ body {
 }
 
 .output {
-    overflow: hidden;
+    overflow: auto;
+    white-space: nowrap;
     font-family: 'Courier New', Courier, monospace;
 }
 
@@ -39,4 +40,22 @@ body {
     white-space: pre;
     line-height: 1.4;
     letter-spacing: 1px;
+}
+
+/* Custom Scrollbar Styling */
+::-webkit-scrollbar {
+    width: 12px;
+}
+
+::-webkit-scrollbar-track {
+    background-color: #111;
+}
+
+::-webkit-scrollbar-thumb {
+    background-color: #00ff00;
+    border-radius: 6px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background-color: #009900;
 }
