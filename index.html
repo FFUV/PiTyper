@@ -18,6 +18,7 @@
         const piDigits = math.pi.toString().substr(2);
         let currentIndex = 0;
         const chunkSize = 100;
+        const digitsPerKeyPress = 3;
         const typewriterSound = new Howl({ src: ['typewrite.mp3'] });
         const outputElement = document.getElementById('output');
         const inputElement = document.getElementById('input');
@@ -27,7 +28,7 @@
             const currentChunk = piDigits.substring(currentIndex, endIndex);
 
             // Update the displayed digits
-            outputElement.textContent += currentChunk;
+            outputElement.innerHTML += '<div class="digit-line">' + currentChunk + '</div>';
 
             // Play typewriter sound every 100 digits
             if (currentIndex % chunkSize === 0 && currentIndex > 0) {
@@ -38,11 +39,6 @@
 
             // Scroll to the bottom
             outputElement.scrollTop = outputElement.scrollHeight;
-
-            // Continue generating digits
-            if (currentIndex < piDigits.length) {
-                setTimeout(generatePiDigits, 1);
-            }
         }
 
         function simulateTyping() {
@@ -64,7 +60,14 @@
             type();
         }
 
-        simulateTyping();
+        document.addEventListener('keydown', function (event) {
+            // Simulate typing and move down 3 digits
+            simulateTyping();
+            currentIndex += digitsPerKeyPress;
+
+            // Generate pi digits after pressing a key
+            setTimeout(generatePiDigits, 500);
+        });
     </script>
 </body>
 </html>
