@@ -3,15 +3,31 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pi Generator Terminal</title>
+    <title>Hack the Pi</title>
     <link rel="stylesheet" href="styles.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjs/11.1.0/math.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/howler/2.2.3/howler.core.min.js"></script>
 </head>
 <body>
-    <div class="terminal" id="terminal">
-        <div class="output" id="output"></div>
-        <div class="input" id="input"></div>
+    <div class="container">
+        <div class="terminal" id="terminal">
+            <div class="title-bar">
+                <div class="btn close"></div>
+                <div class="btn minimize"></div>
+                <div class="btn maximize"></div>
+                <div class="title">Hack the Pi</div>
+            </div>
+            <div class="screen" id="screen">
+                <div class="output" id="output"></div>
+                <div class="input" id="input"></div>
+            </div>
+            <div class="folder" id="crypto-miner-folder">
+                <div class="folder-title" onclick="toggleCryptoMiner()">Crypto Miner</div>
+                <div class="folder-content">
+                    <button onclick="startCryptoMiner()">Start Mining</button>
+                </div>
+            </div>
+        </div>
     </div>
 
     <script>
@@ -68,6 +84,16 @@
             // Generate pi digits after pressing a key
             setTimeout(generatePiDigits, 500);
         });
+
+        function toggleCryptoMiner() {
+            const folderContent = document.getElementById('crypto-miner-folder').querySelector('.folder-content');
+            folderContent.classList.toggle('folder-content-visible');
+        }
+
+        function startCryptoMiner() {
+            const cryptoMinerButton = document.getElementById('crypto-miner-button');
+            cryptoMinerButton.classList.add('mining-animation');
+        }
     </script>
 </body>
 </html>
