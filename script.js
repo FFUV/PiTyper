@@ -25,28 +25,35 @@ function generatePiDigits() {
     outputElement.scrollTop = outputElement.scrollHeight;
 }
 
-function simulateTyping() {
-    const inputText = '> Generating Pi Digits...';
-    let index = 0;
+async function typeText(text, delay = 50) {
+    return new Promise(resolve => {
+        let index = 0;
 
-    function type() {
-        inputElement.textContent += inputText[index];
-        index++;
+        function type() {
+            inputElement.textContent += text[index];
+            index++;
 
-        if (index < inputText.length) {
-            setTimeout(type, 50);
-        } else {
-            // Start generating pi digits after typing
-            setTimeout(generatePiDigits, 500);
+            if (index < text.length) {
+                setTimeout(type, delay);
+            } else {
+                resolve();
+            }
         }
-    }
 
-    type();
+        type();
+    });
 }
 
-document.addEventListener('keydown', function (event) {
+async function simulateTyping() {
+    await typeText('> Hacking into the Matrix...');
+    
+    // Start generating pi digits after typing
+    setTimeout(generatePiDigits, 500);
+}
+
+document.addEventListener('keydown', async function (event) {
     // Simulate typing and move down 3 digits
-    simulateTyping();
+    await simulateTyping();
     currentIndex += digitsPerKeyPress;
 
     // Generate pi digits after pressing a key
