@@ -25,6 +25,7 @@ body {
     border: 2px solid #0f0;
     border-radius: 10px;
     box-shadow: 0 0 20px rgba(0, 255, 0, 0.8);
+    overflow: hidden;
 }
 
 .title-bar {
@@ -62,7 +63,7 @@ body {
 
 .output {
     overflow: auto;
-    white-space: nowrap;
+    white-space: pre;
     font-family: 'Courier New', Courier, monospace;
     height: 80%;
     padding: 10px;
@@ -148,5 +149,5 @@ body {
 }
 
 ::-webkit-scrollbar-thumb:hover {
-    background-color: #090;
+    background-color: #009900;
 }
