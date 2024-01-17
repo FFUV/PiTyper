@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Hack the Pi</title>
+    <title>HackPi Terminal</title>
     <link rel="stylesheet" href="styles.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjs/11.1.0/math.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/howler/2.2.3/howler.core.min.js"></script>
@@ -15,7 +15,7 @@
                 <div class="btn close" onclick="closeTerminal()"></div>
                 <div class="btn minimize" onclick="minimizeTerminal()"></div>
                 <div class="btn maximize" onclick="maximizeTerminal()"></div>
-                <div class="title">Hack the Pi</div>
+                <div class="title">HackPi Terminal</div>
             </div>
             <div class="screen" id="screen">
                 <div class="output" id="output"></div>
@@ -24,7 +24,7 @@
             <div class="folder" id="crypto-miner-folder">
                 <div class="folder-title" onclick="toggleCryptoMiner()">Crypto Miner</div>
                 <div class="folder-content">
-                    <button onclick="startCryptoMiner()">Start Mining</button>
+                    <button id="crypto-miner-button" onclick="startCryptoMiner()">Start Mining Diamonds</button>
                 </div>
             </div>
         </div>
