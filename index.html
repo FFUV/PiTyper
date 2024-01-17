@@ -9,11 +9,9 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/howler/2.2.3/howler.core.min.js"></script>
 </head>
 <body>
-    <div class="terminal">
-        <div class="background">
-            <img src="https://upload.wikimedia.org/wikipedia/commons/3/35/Tux.svg" alt="Linux Penguin">
-        </div>
-        <pre id="piDigits"></pre>
+    <div class="terminal" id="terminal">
+        <div class="output" id="output"></div>
+        <div class="input" id="input"></div>
     </div>
 
     <script>
@@ -21,14 +19,15 @@
         let currentIndex = 0;
         const chunkSize = 100;
         const typewriterSound = new Howl({ src: ['typewrite.mp3'] });
-        const piDigitsElement = document.getElementById('piDigits');
+        const outputElement = document.getElementById('output');
+        const inputElement = document.getElementById('input');
 
         function generatePiDigits() {
             const endIndex = currentIndex + chunkSize;
             const currentChunk = piDigits.substring(currentIndex, endIndex);
 
             // Update the displayed digits
-            piDigitsElement.textContent += currentChunk + '\n';
+            outputElement.textContent += currentChunk;
 
             // Play typewriter sound every 100 digits
             if (currentIndex % chunkSize === 0 && currentIndex > 0) {
@@ -38,7 +37,7 @@
             currentIndex = endIndex % piDigits.length;
 
             // Scroll to the bottom
-            piDigitsElement.scrollTop = piDigitsElement.scrollHeight;
+            outputElement.scrollTop = outputElement.scrollHeight;
 
             // Continue generating digits
             if (currentIndex < piDigits.length) {
@@ -46,7 +45,26 @@
             }
         }
 
-        generatePiDigits();
+        function simulateTyping() {
+            const inputText = '> Generating Pi Digits...';
+            let index = 0;
+
+            function type() {
+                inputElement.textContent += inputText[index];
+                index++;
+
+                if (index < inputText.length) {
+                    setTimeout(type, 50);
+                } else {
+                    // Start generating pi digits after typing
+                    setTimeout(generatePiDigits, 500);
+                }
+            }
+
+            type();
+        }
+
+        simulateTyping();
     </script>
 </body>
 </html>
