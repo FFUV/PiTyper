@@ -3,14 +3,17 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pi Generator</title>
+    <title>Pi Generator Terminal</title>
     <link rel="stylesheet" href="styles.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjs/11.1.0/math.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/howler/2.2.3/howler.core.min.js"></script>
 </head>
 <body>
-    <div class="container">
-        <div id="piDigits"></div>
+    <div class="terminal">
+        <div class="background">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/3/35/Tux.svg" alt="Linux Penguin">
+        </div>
+        <pre id="piDigits"></pre>
     </div>
 
     <script>
@@ -25,7 +28,7 @@
             const currentChunk = piDigits.substring(currentIndex, endIndex);
 
             // Update the displayed digits
-            piDigitsElement.textContent += currentChunk;
+            piDigitsElement.textContent += currentChunk + '\n';
 
             // Play typewriter sound every 100 digits
             if (currentIndex % chunkSize === 0 && currentIndex > 0) {
@@ -33,6 +36,9 @@
             }
 
             currentIndex = endIndex % piDigits.length;
+
+            // Scroll to the bottom
+            piDigitsElement.scrollTop = piDigitsElement.scrollHeight;
 
             // Continue generating digits
             if (currentIndex < piDigits.length) {
